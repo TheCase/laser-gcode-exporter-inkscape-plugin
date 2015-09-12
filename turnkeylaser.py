@@ -857,8 +857,8 @@ class Gcode_tools(inkex.Effect):
 			#G01 : Move with the laser turned on to a new point
             elif s[1] == 'line':
                 if not firstGCode: #Include the ppm values for the first G01 command in the set.
-                    gcode += "G01 " + self.make_args(si[0]) + "S%.2f " % laserPower + "%s " % cutFeed + "%s" % ppmValue + "\n"
-                    firstGCode = True
+                    gcode += "G01 " + self.make_args(si[0]) + " S%.2f " % laserPower + "%s " % cutFeed + "%s" % ppmValue + "\n"
+                    firstGCode = False
                 else:
                     gcode += "G01 " + self.make_args(si[0]) + "\n"
                 lg = 'G01'
@@ -877,8 +877,8 @@ class Gcode_tools(inkex.Effect):
                             gcode += ccwArc
                         
                         if not firstGCode: #Include the ppm values for the first G01 command in the set.
-                            gcode += " " + self.make_args(si[0] + [None, dx, dy, None]) + "S%.2f " % laserPower + "%s " % cutFeed + "%s" % ppmValue + "\n"
-                            firstGCode = True
+                            gcode += " " + self.make_args(si[0] + [None, dx, dy, None]) + " S%.2f " % laserPower + "%s " % cutFeed + "%s" % ppmValue + "\n"
+                            firstGCode = False
                         else:
                             gcode += " " + self.make_args(si[0] + [None, dx, dy, None]) + "\n"
 
@@ -890,8 +890,8 @@ class Gcode_tools(inkex.Effect):
                             gcode += ccwArc
 							
                         if not firstGCode: #Include the ppm values for the first G01 command in the set.
-                            gcode += " " + self.make_args(si[0]) + " R%f" % (r*self.options.Xscale) + "S%.2f " % laserPower + "%s " % cutFeed + "%s" % ppmValue + "\n"
-                            firstGCode = True
+                            gcode += " " + self.make_args(si[0]) + " R%f" % (r*self.options.Xscale) + " S%.2f " % laserPower + "%s " % cutFeed + "%s" % ppmValue + "\n"
+                            firstGCode = False
                         else:
                             gcode += " " + self.make_args(si[0]) + " R%f" % (r*self.options.Xscale) + "\n"
                         
@@ -900,8 +900,8 @@ class Gcode_tools(inkex.Effect):
                 #The arc is less than the minimum arc radius, draw it as a straight line.
                 else:
                     if not firstGCode: #Include the ppm values for the first G01 command in the set.
-						gcode += "G01 " + self.make_args(si[0]) + "S%.2f " % laserPower +  "%s " % cutFeed + "%s" % ppmValue + "\n"
-						firstGCode = True
+						gcode += "G01 " + self.make_args(si[0]) + " S%.2f " % laserPower +  "%s " % cutFeed + "%s" % ppmValue + "\n"
+						firstGCode = False
                     else:
 						gcode += "G01 " + self.make_args(si[0]) + "\n"
 							
